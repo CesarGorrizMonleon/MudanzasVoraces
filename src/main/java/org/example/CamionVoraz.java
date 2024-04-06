@@ -37,8 +37,8 @@ public class CamionVoraz {
         return camion;
     }
 
-    private int precioCamion(ArrayList<Integer> camion) {
-        return (camion.size()+1)*40;
+    public int precioCamion(ArrayList<Integer> camion) {
+        return (camion.size())*40;
     }
 
     public static void main(String[] args) {
