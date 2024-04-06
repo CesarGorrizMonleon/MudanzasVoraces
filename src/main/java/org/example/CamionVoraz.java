@@ -8,34 +8,40 @@ import java.util.Comparator;
 
 public class CamionVoraz {
 
-    public void camion (ArrayList<Integer> mercancia ){
+    public ArrayList<Integer> camion (ArrayList<Integer> mercancia ){
         //ordenamos mercancia
 
 
         if (mercancia.size()==0){
             System.out.println("No hay mercancia");
-            return;
+            return new ArrayList<>();
         }
         int pesoCamion = 10000;
 
         Collections.sort(mercancia);
-        int precio=0;
+
         ArrayList<Integer> camion=new ArrayList<Integer>();
         for (int m:mercancia.stream().toList( )) {
             if (pesoCamion - m >= 0 ) {
                 camion.add(m);
                 pesoCamion=pesoCamion-m;
-                precio=precio+40;
+
                 System.out.println("Introduciomos al camion un peso de "+ m+"kg y un precio de 40 Euros ");
 
             }else {
-                return;
+                return camion ;
             }
         }
+        int precio = precioCamion(camion);
         System.out.println("La factura es de "+precio + " han cabido "+ camion.size()+" productos.");
-
+        return camion;
     }
+
+    private int precioCamion(ArrayList<Integer> camion) {
+        return (camion.size()+1)*40;
+    }
+
     public static void main(String[] args) {
-        System.out.println("args = " + args);
+
     }
 }
