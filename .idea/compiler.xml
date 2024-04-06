@@ -9,5 +9,8 @@
         <module name="MudanzasVoraces" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="MudanzasVoraces" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

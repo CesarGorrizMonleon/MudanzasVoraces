@@ -8,7 +8,7 @@ import java.util.Comparator;
 
 public class CamionVoraz {
 
-    public ArrayList<Integer> camion (ArrayList<Integer> mercancia ){
+    public ArrayList<Integer> pesoPaqueteCamion (ArrayList<Integer> mercancia ){
         //ordenamos mercancia
 
 
