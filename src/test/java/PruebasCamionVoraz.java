@@ -113,6 +113,7 @@ public class PruebasCamionVoraz {
         CamionVoraz camvor = new CamionVoraz();
         ArrayList<Integer> mercancia = new ArrayList<Integer>();
         ArrayList<Integer> mercanciajusta = new ArrayList<Integer>();
+        //añadimos la mercancia al array
         mercancia.add(9999);
         mercancia.add(1);
         mercancia.add(1);
