@@ -64,5 +64,14 @@ public class PruebasCamionVoraz {
         assertEquals(520, preciototal);
     }
 
+    @Test
+    public void MercanciaVacia(){
+        System.out.println("Test de que no haya mercancia");
+        CamionVoraz camvor = new CamionVoraz();
+        ArrayList<Integer> mercancia = new ArrayList<Integer>();
+        ArrayList<Integer> vacio = new ArrayList<Integer>();
+
+        assertEquals(vacio,camvor.pesoPaqueteCamion(mercancia));
+    }
 
 }
