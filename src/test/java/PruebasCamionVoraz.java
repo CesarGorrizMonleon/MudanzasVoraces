@@ -73,5 +73,53 @@ public class PruebasCamionVoraz {
 
         assertEquals(vacio,camvor.pesoPaqueteCamion(mercancia));
     }
+    @Test
+    public void MercanciaOrdenada(){
+        System.out.println("Test de que se ordene correctamenta la mercancia");
+        CamionVoraz camvor = new CamionVoraz();
+        ArrayList<Integer> mercancia = new ArrayList<Integer>();
+
+        for (int i = 15; i >=1; i--) {
+            mercancia.add(i);
+
+        }
+
+        ArrayList<Integer> mercanciaFinal = new ArrayList<Integer>();
+
+        for (int i = 1; i <= 15; i++) {
+
+            mercanciaFinal.add(i);
+
+        }
+        assertEquals(mercanciaFinal,camvor.pesoPaqueteCamion(mercancia));
+    }
+
+    @Test
+    public void MercanciaJusta(){
+        System.out.println("Test de la mercancia va justa y llena el camion");
+        CamionVoraz camvor = new CamionVoraz();
+        ArrayList<Integer> mercancia = new ArrayList<Integer>();
+        ArrayList<Integer> mercanciajusta = new ArrayList<Integer>();
+        mercancia.add(9999);
+        mercancia.add(1);
+        mercanciajusta.add(1);
+        mercanciajusta.add(9999);
+
+        assertEquals(mercanciajusta,camvor.pesoPaqueteCamion(mercancia));
+    }
+    @Test
+    public void Mercanciapasada(){
+        System.out.println("Test de que no pone la mercancia si se pasa de peso el camion");
+        CamionVoraz camvor = new CamionVoraz();
+        ArrayList<Integer> mercancia = new ArrayList<Integer>();
+        ArrayList<Integer> mercanciajusta = new ArrayList<Integer>();
+        mercancia.add(9999);
+        mercancia.add(1);
+        mercancia.add(1);
+        mercanciajusta.add(1);
+        mercanciajusta.add(1);
+
+        assertEquals(mercanciajusta,camvor.pesoPaqueteCamion(mercancia));
+    }
 
 }
