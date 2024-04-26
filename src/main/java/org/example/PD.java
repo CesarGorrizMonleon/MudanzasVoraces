@@ -25,7 +25,7 @@ public class PD {
         public int id, peso, valor;
 
     }
-    public static void pd (int[] v, int C){
+    public static Object pd (int[] v, int C){
         int f = v.length;
         int c = C +1;  //Columna para camión sin capacidad
         int[][] T = new int[f][c];
@@ -78,5 +78,6 @@ public class PD {
         }
         System.out.println("");
         System.out.println("Factura: " + pesoT * PAGO);
+        return null;
     }
 }

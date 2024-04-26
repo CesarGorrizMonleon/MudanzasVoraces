@@ -1,9 +1,11 @@
 import org.example.CamionVoraz;
+
 import org.example.PD;
 import org.testng.annotations.Test;
+
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;;
 
 public class PruebasPD {
 
@@ -12,7 +14,7 @@ public class PruebasPD {
         PD camion = new PD();
     }
 
-    @test
+    @Test
     public void MercanciaVacia(){
         System.out.println("Test de que no haya mercancia");
         PD camvor = new PD();
