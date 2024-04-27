@@ -3,8 +3,6 @@ package org.example;
 
 import java.util.*;
 
-import org.example.Mercancia;
-
 public class PD {
     static Scanner scanner = new Scanner(System.in);
     private final static int CAPACIDAD = 9;
@@ -19,12 +17,20 @@ public class PD {
         v.add(new Mercancia(3,6));
 
 
-        pd(v,c);
+        tablaProgDinamica(v,c);
 
     }
+    public int calcularPrecioCamion (ArrayList<Mercancia> camion){
+       if (camion.size()==0)return 0;
+        int acumulado =0;
+        for (Mercancia d:camion) {
+            acumulado= acumulado+d.beneficio;
+        }
+        System.out.println("El precio  del  camión es" + camion+"€");
+        return acumulado;
+    }
 
-
-    public static int[][] pd (ArrayList<Mercancia> tabla, int C){
+    public static int[][] tablaProgDinamica(ArrayList<Mercancia> tabla, int C){
         
 
        tabla.add(0, new Mercancia(0,0));
