@@ -30,6 +30,17 @@ public class PD {
         return acumulado;
     }
 
+    public ArrayList<Mercancia> objetosSeleccionado(int[][] tabla){
+        ArrayList<Mercancia> camion= new ArrayList<>();
+        for (int i = CAPACIDAD; i > 0; i--) {
+            for (int j = tabla.length; j > 1 ; j--) {
+                if (tabla[i][j]!=tabla[i][j-1]){
+
+                }
+            }
+        }
+    }
+
     public static int[][] tablaProgDinamica(ArrayList<Mercancia> tabla, int C){
         
 
@@ -41,7 +52,6 @@ public class PD {
         }
         int c = C +1;  //Columna para camión sin capacidad
         int[][] T = new int[tabla.size()][c];
-
         //HACER TABLA
         for(int i = 1; i < tabla.size(); i++){
             for(int j = 0; j < c; j++){
@@ -66,23 +76,26 @@ public class PD {
         }
 
         // MOSTRAR SOLUCION
-        int i, j, pesoT;
 
-
-        pesoT = T[tabla.size() - 1][c - 1];
-        System.out.println("Capacidad maxima del camion: " + pesoT);
-        System.out.println("Mercancias utilizadas: ");
-        i = tabla.size() - 1;
-        j = c - 1;
-        while (i > 0 && j > 0) {
-            if (T[i][j] != T[i - 1][j]) {
-
-                //j == v[i];
-            }
-            i--;
-        }
-        System.out.println("");
-        System.out.println("Factura: " + pesoT * PAGO);
         return T;
+
+//        int i, j, pesoT;
+//
+//
+//        pesoT = T[tabla.size() - 1][c - 1];
+//        System.out.println("Capacidad maxima del camion: " + pesoT);
+//        System.out.println("Mercancias utilizadas: ");
+//        i = tabla.size() - 1;
+//        j = c - 1;
+//        while (i > 0 && j > 0) {
+//            if (T[i][j] != T[i - 1][j]) {
+//
+//                //j == v[i];
+//            }
+//            i--;
+//        }
+//        System.out.println("");
+//        System.out.println("Factura: " + pesoT * PAGO);
+//        return T;
     }
 }
