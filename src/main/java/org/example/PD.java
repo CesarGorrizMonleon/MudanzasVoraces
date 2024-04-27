@@ -1,50 +1,41 @@
 package org.example;
 
+
+import java.util.Random;
 import java.util.Scanner;
+import org.example.Mercancia;
 
 public class PD {
     static Scanner scanner = new Scanner(System.in);
-    private final static int CAPACIDAD = 4;
+    private final static int CAPACIDAD = 8;
     private final static int PAGO = 6;
     public static void main(String[] args) {
         int c = CAPACIDAD;
-        int[] v = getPaquetes();
+        Mercancia[] v = getPaquetes();
         pd(v,c);
     }
-    public static int[] getPaquetes(){
+    public static Mercancia[] getPaquetes(){
         System.out.println("Total paquetes: ");
-        int[] v = new int [scanner.nextInt() +1];  //Por la fila vacia.
+        Mercancia[] v = new Mercancia[scanner.nextInt() +1];  //Por la fila vacia.
         //Dejamos la posición 0 con el valor 0 para el vacio.
         for(int i = 0; i < v.length; i++){
             System.out.println("Peso: ");
-            v[i] = scanner.nextInt();
+            v[i].peso =scanner.nextInt();
+            System.out.println("Beneficio: ");
+            v[i].beneficio =scanner.nextInt();
         }
+
         return v;
     }
-    public class Paquete{
-        public int id, peso, valor;
-
-    }
-    public static Object pd (int[] v, int C){
-        int f = v.length;
+    public static void pd (Mercancia[] v, int C){
+        int f = v.length+1;
         int c = C +1;  //Columna para camión sin capacidad
         int[][] T = new int[f][c];
 
         //HACER TABLA
         for(int i = 0; i < f; i++){
             for(int j = 0; j < c; j++){
-                if(i == 0 || j == 0) {
-                    T[i][j] = 0;
-                }
-                else if(v[i] > j){
-                    T[i][j] = T[i-1][j];
-                }
-                else if(T[i-1][j] >= v[i] + T[i-1][j-v[i]]){        //Si no coger el paquete actual me da mejores resultados que cogerlo
-                    T[i][j] = T[i-1][j];
-                }
-                else{
-                    T[i][j] = v[i] + T[i-1][j-v[i]];
-                }
+                T[i][j]= Integer.max(T[i-1][j],)
             }
         }
         // IMPRIMIR TABLA
@@ -78,6 +69,6 @@ public class PD {
         }
         System.out.println("");
         System.out.println("Factura: " + pesoT * PAGO);
-        return null;
+
     }
 }
