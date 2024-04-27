@@ -45,8 +45,10 @@ public class PD {
         //HACER TABLA
         for(int i = 1; i < tabla.size(); i++){
             for(int j = 0; j < c; j++){
-
-                T[i][j]= Integer.max(T[i-1][j],tabla.get(i).beneficio + T[i-1][j-tabla.get(i).peso]);
+                if(tabla.get(i).peso>j){
+                    T[i][j]=T[i-1][j];
+                }
+                else T[i][j]= Integer.max(T[i-1][j],tabla.get(i).beneficio + T[i-1][j-tabla.get(i).peso]);
             }
         }
         // IMPRIMIR TABLA
