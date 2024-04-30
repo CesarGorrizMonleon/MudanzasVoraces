@@ -7,20 +7,8 @@ public class PD {
     static Scanner scanner = new Scanner(System.in);
     private final static int CAPACIDAD = 9;
     private final static int PAGO = 6;
-    public static void main(String[] args) {
-        int c = CAPACIDAD;
-        ArrayList<Mercancia> v = new ArrayList<>();
-        v.add(new Mercancia(3,7));
-        v.add(new Mercancia(4,9));
-        v.add(new Mercancia(3,6));
-        v.add(new Mercancia(3,6));
-        v.add(new Mercancia(3,6));
-
-
-        tablaProgDinamica(v,c);
-
-    }
-    public static int calcularPrecioCamion (ArrayList<Mercancia> camion){
+    public static void main(String[] args) {}
+    public static int calcularPrecioCamion(ArrayList<Mercancia> camion){
        if (camion.size()==0)return 0;
         int acumulado =0;
         for (Mercancia d:camion) {
@@ -31,7 +19,7 @@ public class PD {
         return acumulado;
     }
 
-    public static ArrayList<Mercancia> objetosSeleccionado(int[][] tabla,ArrayList<Mercancia>mercancias){
+    public static ArrayList<Mercancia> objetosSeleccionado(int[][] tabla, ArrayList<Mercancia> mercancias){
 
 
         ArrayList<Mercancia> camion= new ArrayList<>();
@@ -49,7 +37,7 @@ public class PD {
     }
 
     public static int[][] tablaProgDinamica(ArrayList<Mercancia> tabla, int C){
-        
+        if (tabla.size()==0)return null;
 
        tabla.add(0, new Mercancia(0,0));
 
