@@ -1,21 +1,27 @@
 package org.example;
 
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.*;
 
 public class PD {
+    private static final Logger logger = LogManager.getLogger(PD.class);
     static Scanner scanner = new Scanner(System.in);
     private final static int CAPACIDAD = 9;
     private final static int PAGO = 6;
-    public static void main(String[] args) {}
+    public static void main(String[] args) {
+
+    }
     public static int calcularPrecioCamion(ArrayList<Mercancia> camion){
+
        if (camion.size()==0)return 0;
         int acumulado =0;
         for (Mercancia d:camion) {
             acumulado= acumulado+d.beneficio;
             System.out.println("d.peso+\" \"+d.beneficio = " + d.peso+" "+d.beneficio);
         }
-        System.out.println("El precio  del  camión es" + acumulado+"€");
+        logger.info("El precio del camión es "+acumulado);
+
         return acumulado;
     }
 
@@ -33,6 +39,8 @@ public class PD {
                 }
             }
         }
+
+        logger.info("se ha calculado el camion"+camion);
         return camion;
     }
 
@@ -56,6 +64,8 @@ public class PD {
                 else T[i][j]= Integer.max(T[i-1][j],tabla.get(i).beneficio + T[i-1][j-tabla.get(i).peso]);
             }
         }
+        logger.info("calculando la matriz");
+
         // IMPRIMIR TABLA
         System.out.print("\t\t|\t");
         for (int j = 0; j < c; j++) {
@@ -73,27 +83,10 @@ public class PD {
 
 
         // MOSTRAR SOLUCION
-        ArrayList<Mercancia> camion = objetosSeleccionado(T,tabla);
-        int precio = calcularPrecioCamion(camion);
+        //ArrayList<Mercancia> camion = objetosSeleccionado(T,tabla);
+        //int precio = calcularPrecioCamion(camion);
         return T;
 
-//        int i, j, pesoT;
-//
-//
-//        pesoT = T[tabla.size() - 1][c - 1];
-//        System.out.println("Capacidad maxima del camion: " + pesoT);
-//        System.out.println("Mercancias utilizadas: ");
-//        i = tabla.size() - 1;
-//        j = c - 1;
-//        while (i > 0 && j > 0) {
-//            if (T[i][j] != T[i - 1][j]) {
-//
-//                //j == v[i];
-//            }
-//            i--;
-//        }
-//        System.out.println("");
-//        System.out.println("Factura: " + pesoT * PAGO);
-//        return T;
+
     }
 }

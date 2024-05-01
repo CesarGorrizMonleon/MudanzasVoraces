@@ -2,6 +2,7 @@ import org.example.CamionVoraz;
 
 import org.example.Mercancia;
 import org.example.PD;
+import org.junit.jupiter.api.Assertions;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -58,6 +59,7 @@ public class PruebasPD {
         precio.add(new Mercancia(3,6));
         int a = 19;
         assertEquals(19, PD.calcularPrecioCamion(precio));
+        System.out.println("El precio  del  camión es" +PD.calcularPrecioCamion(precio)+"€");
     }
 
     @Test
@@ -87,7 +89,7 @@ public class PruebasPD {
                 new Mercancia(3,7)
         ));
 
-        assertEquals((precio),PD.objetosSeleccionado(vector,v));
+        Assertions.assertIterableEquals(precio,PD.objetosSeleccionado(vector,v));
 
     }
 

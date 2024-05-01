@@ -1,10 +1,10 @@
 package org.example;
 
-public class Mercancia {
+public  class Mercancia {
     int peso;
     int beneficio;
 
-    public Mercancia(int p,int b){
+    public  Mercancia(int p,int b){
         peso=p;
         beneficio=b;
     }
