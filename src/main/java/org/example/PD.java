@@ -28,7 +28,7 @@ public class PD {
     public static ArrayList<Mercancia> objetosSeleccionado(int[][] tabla, ArrayList<Mercancia> mercancias){
 
 
-        ArrayList<Mercancia> camion= new ArrayList<>();
+        ArrayList<Mercancia> camion= new ArrayList<Mercancia>();
         for (int i = CAPACIDAD; i > 0; i--) {
             for (int j = tabla.length-1; j > 0 ; j--) {
                 if (tabla[j][i]!=tabla[j-1][i]){

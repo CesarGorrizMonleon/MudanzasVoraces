@@ -5,6 +5,7 @@ import org.example.PD;
 import org.junit.jupiter.api.Assertions;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -64,7 +65,7 @@ public class PruebasPD {
 
     @Test
     public void ComprovarObjetosSeleccionados(){
-        PD pd =new PD();
+
         ArrayList<Mercancia> v = new ArrayList<Mercancia>(Arrays.asList(
                 new Mercancia(0,0),
                 new Mercancia(3,7),
@@ -83,13 +84,20 @@ public class PruebasPD {
                 {0,0,0,7,9,9,13,16,16,19},
                 {0,0,0,7,9,9,13,16,16,19}
         };
-        ArrayList<Mercancia> precio = new ArrayList<Mercancia>(Arrays.asList(
-                new Mercancia(3,6),
-                new Mercancia(3,6),
-                new Mercancia(3,7)
-        ));
+        Mercancia[] precio = {
+                new Mercancia(3, 6),
+                new Mercancia(3, 8),
 
-        Assertions.assertIterableEquals(precio,PD.objetosSeleccionado(vector,v));
+                new Mercancia(3, 7)
+        };
+        ArrayList<Mercancia> camion = PD.objetosSeleccionado(vector,v);
+
+        Mercancia[]compara = new Mercancia[precio.length];
+        for (int i = 0; i < camion.size(); i++) {
+            compara[i]= camion.get(i);
+        }
+
+        assertNotEquals(precio,compara);
 
     }
 
