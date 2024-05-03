@@ -1,3 +1,5 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.CamionVoraz;
 
 import org.example.Mercancia;
@@ -14,6 +16,7 @@ import  org.junit.jupiter.api.Assertions.*;
 ;import static org.junit.jupiter.api.Assertions.*;
 
 public class PruebasPD {
+    private static final Logger logger = LogManager.getLogger(PD.class);
     private final static int CAPACIDAD = 9;
 
     public static void main(String[] args) {
@@ -30,7 +33,8 @@ public class PruebasPD {
     }
     @Test
     public void ComprobarTablaDinamica(){
-        System.out.println("Test de que no haya mercancia");
+        logger.info("Test de que no haya mercancia");
+
         ArrayList<Mercancia> v = new ArrayList<>();
         v.add(new Mercancia(3,7));
         v.add(new Mercancia(4,9));
@@ -60,7 +64,7 @@ public class PruebasPD {
         precio.add(new Mercancia(3,6));
         int a = 19;
         assertEquals(19, PD.calcularPrecioCamion(precio));
-        System.out.println("El precio  del  camión es" +PD.calcularPrecioCamion(precio)+"€");
+        logger.info("El precio  del  camión es" +PD.calcularPrecioCamion(precio)+"€");
     }
 
     @Test
