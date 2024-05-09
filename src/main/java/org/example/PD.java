@@ -21,7 +21,6 @@ public class PD {
             System.out.println("d.peso+\" \"+d.beneficio = " + d.peso+" "+d.beneficio);
         }
         logger.info("El precio del camión es "+acumulado);
-
         return acumulado;
     }
 

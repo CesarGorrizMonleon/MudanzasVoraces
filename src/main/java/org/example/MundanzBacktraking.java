@@ -1,69 +1,72 @@
 package org.example;
 
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MundanzBacktraking {
-    static int CAPACIDAD=20;
+    private static final int MAX_CAMIONES = 3;
+    private static final int MAX_CAPACIDAD = 20000;
+    private static int N;
+    private static int M;
+    private static int[] C;   //Carga
+    private static int P;
+    private static int[] V;
+    private static int[] A;   //Asignados
 
     public static void main(String[] args) {
-        ArrayList<MercanciaBacktraking> mercancias = new ArrayList<MercanciaBacktraking>();
-        mercancias.add(new MercanciaBacktraking(3,0,7));
-        mercancias.add(new MercanciaBacktraking(4,0,9));
-        mercancias.add(new MercanciaBacktraking(5,0,10));
-        ArrayList<Integer> y = new ArrayList<Integer>();
-        ArrayList<Integer> x = new ArrayList<Integer>();
-
-        Mochila(mercancias, 1,x,y);
+        inicializar();
+        VA(0);      //0 porque es la etapa 1 en el arbol de expansión
+        mostrarSolucion(A);
     }
-
-    public static int pesoTotal(ArrayList<Integer> x, ArrayList<MercanciaBacktraking> mercancias){
-        int total=0;
-        for(int i=0;i<x.size();i++){
-            if(x.get(i)==1) {
-                total = total + mercancias.get(i).peso;
-            }
+    public static void inicializar() {
+        Scanner sc = new Scanner(System.in);
+        //Paquetes
+        System.out.println("Nº paquetes: ");
+        P = sc.nextInt();
+        V = new int[P];
+        A = new int[P];
+        for (int i = 0; i < V.length; i++) {
+            System.out.println("Paquete " + (i + 1) + ":");
+            V[i] = sc.nextInt();
         }
-        return total;
+        //Camiones
+        N = MAX_CAPACIDAD;
+        C = new int[N];
+        M = MAX_CAPACIDAD;
     }
+    public static void VA(int k){//k = Paquete en el cual estoy
+        int[] sol= new int[N];
+        for (int camion = 1; camion <= N; camion++) {   //Restriccion explicita
+            A[k] = camion;          //Asigno el paquete k en al camion "camion"
+            C[camion -1] += V[k];   //Sumo el peso del paquete recien asignado al peso que ya tenia el camion
+            if(vivo(camion-1)){     //Comprobamos si la carga, no supera la capacidad maxima del camion
+                if(k < P-1){    //Si aun quedan paquetes pasamos a la siguiente etapa (siguiente paquete)
+                    VA(k+1);
+                }else{
 
-    public static boolean beneficio(ArrayList<Integer> x, ArrayList<Integer> y, ArrayList<MercanciaBacktraking> mercancias){
-        float beneficio1 = 0;
-        float beneficio2=0;
-        for(int i=0;i<y.size();i++){
-            if(y.get(i) == 1) {
-                beneficio1 = beneficio1 + mercancias.get(i).beneficio;
-            }
-            else if(x.get(i)==1) {
-                beneficio2 = beneficio2 + mercancias.get(i).beneficio;
-            }
-        }
-        if (beneficio2>=beneficio1) return true;
-        return false;
-    }
+                    //Si ya no quedan paquetes hemos encontrado solucion
+                     mostrarSolucion(A);
 
-
-    public static boolean Mochila(ArrayList<MercanciaBacktraking> mercancias, int k,ArrayList<Integer> x,ArrayList<Integer> y) {
-        // k : objeto o nivel k
-        // Globales: vectores de beneficios y pesos, capacidad de la mochila,
-        // x vector solución con x[1],…,x[k-1] ya calculados,
-        // y vector óptimo temporal
-
-        for (int i = 0; i<=1; i++) {
-                x.add(i);
-                if(pesoTotal(x,mercancias)<CAPACIDAD){ // los elegidos desde 1 hasta k caben en la mochila
-                    if(k==mercancias.size()){ // solución
-                        if(beneficio(x,y,mercancias)){  // y=x si beneficio de x mejora al de y
-                            y=x; // actualizar óptimo local
-
-                        }
-                    }
-                    else Mochila(mercancias, k+1,x,y);// k<n meter mercancia
+                    System.exit(0);
                 }
             }
-        for(int j=0;j<y.size();j++){
-            System.out.println(y.get(j));
+            C[camion -1] -= V[k];   //Nodo muerto, restamos la carga que habiamos sumado
         }
+        A[k] = 0;//Al terminar el ultimo valor de la restricción explicita, hacemos VA. Esto es el nodo VA
 
-        return true;
     }
+    public static int[] mostrarSolucion(int[] A) {  // Misma funcion utilizada para "Mostrar primera solucion" y "no hay solucion"
+        if (A.length > 0 && A[0] != 0) {
+            for (int i = 0; i < A.length; i++) {
+                System.out.print("[" + A[i] + "]");
+            }
+            System.out.println();
+        } else {
+            System.out.println("No hay solución.");
+        }
+        return A;
+    }
+    public static boolean vivo(int k) {
+        return C[k] <= M;
+    }
+
 }
