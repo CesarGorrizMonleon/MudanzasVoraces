@@ -22,10 +22,10 @@ public class PruebasMudanzaBactraking {
         MundanzBacktraking.C = new int[MundanzBacktraking.N]; // Inicializar cargas
     }
     @Test
-    public void testSolucionValida() {
+    public void testSolucionNoValida() {
         MundanzBacktraking.A = new  int[3];
         // Configurar entrada simulada para el número de paquetes y sus pesos
-        String input = "3\n5000\n7000\n3000\n"; // 3 paquetes con pesos 5000, 7000 y 3000
+        String input = "3\n50000\n7000\n3000\n"; // 3 paquetes con pesos 5000, 7000 y 3000
         System.setIn(new ByteArrayInputStream(input.getBytes())); // Simular entrada por teclado
 
 
@@ -38,11 +38,16 @@ public class PruebasMudanzaBactraking {
 
     @Test
     public void testVivo() {
+
+        MundanzBacktraking.C[0] = 21000; // Excede la capacidad
+        Assertions.assertFalse(MundanzBacktraking.vivo(0), "Debe exceder la capacidad");
+    }
+
+    @Test
+    public void testvivo2(){
         // Verificar la lógica del método "vivo"
         MundanzBacktraking.C[0] = 10000; // Primera carga
         Assertions.assertTrue(MundanzBacktraking.vivo(0), "Debe estar dentro de la capacidad");
 
-        MundanzBacktraking.C[0] = 21000; // Excede la capacidad
-        Assertions.assertFalse(MundanzBacktraking.vivo(0), "Debe exceder la capacidad");
     }
 }
