@@ -22,20 +22,19 @@ public class MundanzBacktraking {
         Scanner sc = new Scanner(System.in);
         //Paquetes
         System.out.println("Nº paquetes: ");
-        P = sc.nextInt();
-        V = new int[P];
+
+        V = new int[]{150,123,145,565,1323,1312,545,7675,5764,543,456,456,654,456,546,215,245,232,564,436,67,23,766,243,452,123,124,435,65,12,878,232,445,17758,3};
+        P = V.length;
+        System.out.println("V = " + V.length);
         A = new int[P];
-        for (int i = 0; i < V.length; i++) {
-            System.out.println("Paquete " + (i + 1) + ":");
-            V[i] = sc.nextInt();
-        }
+
         //Camiones
         N = MAX_CAPACIDAD;
         C = new int[N];
         M = MAX_CAPACIDAD;
     }
     public static void VA(int k, int[]  V, int[] A){//k = Paquete en el cual estoy
-        int[] sol= new int[N];
+
         for (int camion = 1; camion <= N; camion++) {   //Restriccion explicita
             A[k] = camion;          //Asigno el paquete k en al camion "camion"
             C[camion -1] += V[k];   //Sumo el peso del paquete recien asignado al peso que ya tenia el camion
